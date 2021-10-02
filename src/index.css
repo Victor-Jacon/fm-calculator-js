@@ -1,0 +1,19 @@
+/* CSS - RESET */
+
+body, p, h1, ul, li, blockquote {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Vollkorn", Georgia, serif; /* Fonte 2 de 2 - Chamamos aqui a fonte, se o sistema do cara não tiver Volkorn, carregaremos georgia, se não tiver também, usaremos qualquer serifada que ele tiver instalada no sistema dele. */
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,6 @@
+{
+  "Links": {
+    "[TS] How to type styled-component props": "https://stackoverflow.com/questions/47077210/using-styled-components-with-props-and-typescript/52045733#52045733",
+    "[TS] How to make a interface props optional": "https://medium.com/terria/typescript-transforming-optional-properties-to-required-properties-that-may-be-undefined-7482cb4e1585"
+  }
+}
