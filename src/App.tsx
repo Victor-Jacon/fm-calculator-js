@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 
 const App = () => {
+
+  const [bill, setBill] = useState<number>();
+
+  const handleBill = (e: any) => {
+    setBill(e.target.value)
+    console.log(e.target.value)
+  }
+
+  const [tip, setTip] = useState<any>(10);
+
+  function handleTip(e: any) {
+    // console.log(e.target.value)
+    setTip(e.target.value);
+  }
+
+  function handleTipLabel(e: any) {
+    // console.log(e.target.dataset)
+    setTip(e.target.dataset.tip);
+  }
+
   return (
     <Container bgColor={colors.lightGrayishCyan} fullScreen>
       <Container bgColor={'red'} alItems={'flex-start'}>
@@ -13,20 +33,22 @@ const App = () => {
       <Container>
         <h1>Bill</h1>
         <Container flexDir={'row'}>
-          <p>$</p>
-          <p>142.55</p>
+          <input value={bill} onChange={(e) => handleBill(e)} type="text" />
+          {/* Colocar o $ como absolute */}<p>$</p>
         </Container>
       </Container>
 
       <Container>
         <h1>Select Tip %</h1>
         <Container flexDir={'row'}>
-          <button>5</button>
-          <button>10</button>
-          <button>15</button>
-          <button>25</button>
-          <button>50</button>
-          <button>Custom</button>
+          <StyledTipForm>
+            <StyledTipOption value={5} checked={tip === '5'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={5} onClick={(e) => handleTipLabel(e)}>5%</StyledTipText>
+            <StyledTipOption value={10} checked={tip === '10'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={10} onClick={(e) => handleTipLabel(e)}>10%</StyledTipText>
+            <StyledTipOption value={15} checked={tip === '15'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={15} onClick={(e) => handleTipLabel(e)}>15%</StyledTipText>
+            <StyledTipOption value={25} checked={tip === '25'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={25} onClick={(e) => handleTipLabel(e)}>25%</StyledTipText>
+            <StyledTipOption value={50} checked={tip === '50'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={50} onClick={(e) => handleTipLabel(e)}>50%</StyledTipText>
+            <StyledTipOption value={'custom'} checked={tip === 'custom'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={'custom'} onClick={(e) => handleTipLabel(e)}>Custom</StyledTipText>
+          </StyledTipForm>
         </Container>
       </Container>
 
@@ -72,6 +94,7 @@ const App = () => {
 
 //  ########## Styled Components
 const colors = {
+  strongCyan: 'hsl(172, 67%, 45%)',
   veryDarkCyan: 'hsl(183, 100%, 15%)',
   darkGrayishCyan: 'hsl(186, 14%, 43%)',
   darkGrayishCyan2: 'hsl(184, 14%, 56%)',
@@ -80,6 +103,10 @@ const colors = {
   white: 'hsl(0, 0%, 100%)'
 }
 
+const formInputSize = '24px'
+const fontFamily = `'Space Mono', monospace`;
+
+// Container
 interface ContainerProps {
   bgColor?: any;
   fullScreen?: boolean;
@@ -97,5 +124,40 @@ export const Container = styled.div<ContainerProps>`
   height: ${({fullScreen}) => fullScreen ? '100vh' : 'initial'};
   gap: 16px;
 `
+
+// Radio Button
+export const StyledTipForm = styled.form`
+  label:first-of-type { 
+    left: -89px;
+  }
+
+  label:last-of-type { 
+    left: -119px;
+  }
+`
+
+export const StyledTipOption = styled.input`
+  width: 147px;
+  height: 47px;
+  border-radius: 5px;
+  background-color: ${colors.veryDarkCyan};
+  /*disables default appearance of radio*/
+  -webkit-appearance: none; 
+  -moz-appearance: none;
+  &:checked { background-color: ${colors.strongCyan}; }
+  &:focus { outline: none;  }
+`
+
+export const StyledTipText = styled.label`
+  position: relative;
+  left: -95px;
+  top: -16px;
+  font-size: 15px;
+  color:${colors.lightGrayishCyan2};
+  font-size: ${formInputSize};
+  font-weight: bold;
+  font-family: ${fontFamily};
+`
+
 
 export default App;

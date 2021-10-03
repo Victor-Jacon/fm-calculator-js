@@ -18,7 +18,7 @@ Users should be able to:
 ### Built with
 
 - HTML
-- CSS, Flexbox, Styled Components
+- Flexbox, Styled Components
 - [React](https://reactjs.org/) - JS library
 - [Typescript]
 - [Testing] Jest
