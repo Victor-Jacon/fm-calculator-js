@@ -4,6 +4,8 @@
     "[TS] Make interface props optional": "https://medium.com/terria/typescript-transforming-optional-properties-to-required-properties-that-may-be-undefined-7482cb4e1585",
     "[Styled-components] Create input radio with styled-components": "https://codesandbox.io/s/react-styled-components-radio-button-qpxul?file=/src/index.js:1851-1860",
     "[CSS] Put label text inside radio button": "https://stackoverflow.com/questions/45259139/how-to-put-text-inside-radio-button",
-    "[HTML, React] How to include data on the object: e.target?": "https://stackoverflow.com/questions/42576198/get-object-data-and-target-element-from-onclick-event-in-react-js/42587936"
+    "[HTML, React] How to include data on the object: e.target?": "https://stackoverflow.com/questions/42576198/get-object-data-and-target-element-from-onclick-event-in-react-js/42587936",
+    "[CSS] Style the first element" : "https://css-tricks.com/almanac/selectors/f/first-of-type/",
+    "[CSS] Style the last child element of a form" : "https://css-tricks.com/almanac/selectors/l/last-of-type/"
   }
 }
