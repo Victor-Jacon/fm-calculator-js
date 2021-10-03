@@ -3,23 +3,60 @@ import styled from 'styled-components'
 
 const App = () => {
 
-  const [bill, setBill] = useState<number>();
+  // handleBil
+  const [bill, setBill] = useState<number>(0);
 
   const handleBill = (e: any) => {
     setBill(e.target.value)
-    console.log(e.target.value)
+    // console.log(e.target.value)
+    handleTotalBillAndTip(bill, tipPercentage, people)
   }
 
-  const [tip, setTip] = useState<any>(10);
+  // handleTip
+  const [tipPercentage, setTipPercentage] = useState<any>('10');
 
   function handleTip(e: any) {
     // console.log(e.target.value)
-    setTip(e.target.value);
+    setTipPercentage(e.target.value);
   }
-
   function handleTipLabel(e: any) {
     // console.log(e.target.dataset)
-    setTip(e.target.dataset.tip);
+    setTipPercentage(e.target.dataset.tip);
+  }
+
+  // handlePeople
+  const [people, setPeople] = useState<number>(1);
+
+  function handlePeople(e: any) {
+    // console.log(e.target.value)
+    setPeople(e.target.value)
+  }
+
+  // handleTotalBill
+  const [tipAmount, setTipAmount] = useState<number>(0);
+  const [billperPerson, setBillPerPerson] = useState<number>(0);
+
+  function handleTotalBillAndTip (bill: number, tipPercentage: string, people:number) {
+    const tipPercentageParsed = parseFloat(tipPercentage)
+    // console.log('tipPercentage: ', tipPercentage);
+    // console.log('tipPercentageParsed: ', tipPercentageParsed)
+
+    // tip
+    const tipTotal = (bill / 100) * tipPercentageParsed
+    const tipSplit = tipTotal / people
+    setTipAmount(tipSplit)
+
+    // bill
+    const billWithTips = bill + tipTotal
+    const billWithTipsSplit = billWithTips / people
+    setBillPerPerson(billWithTipsSplit)
+
+    return {
+      billInfo: {
+        tipSplit,
+        billWithTipsSplit,
+      }
+    }
   }
 
   return (
@@ -33,7 +70,7 @@ const App = () => {
       <Container>
         <h1>Bill</h1>
         <Container flexDir={'row'}>
-          <input value={bill} onChange={(e) => handleBill(e)} type="text" />
+          <input value={bill } onChange={(e) => handleBill(e)} type="text" />
           {/* Colocar o $ como absolute */}<p>$</p>
         </Container>
       </Container>
@@ -42,12 +79,12 @@ const App = () => {
         <h1>Select Tip %</h1>
         <Container flexDir={'row'}>
           <StyledTipForm>
-            <StyledTipOption value={5} checked={tip === '5'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={5} onClick={(e) => handleTipLabel(e)}>5%</StyledTipText>
-            <StyledTipOption value={10} checked={tip === '10'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={10} onClick={(e) => handleTipLabel(e)}>10%</StyledTipText>
-            <StyledTipOption value={15} checked={tip === '15'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={15} onClick={(e) => handleTipLabel(e)}>15%</StyledTipText>
-            <StyledTipOption value={25} checked={tip === '25'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={25} onClick={(e) => handleTipLabel(e)}>25%</StyledTipText>
-            <StyledTipOption value={50} checked={tip === '50'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={50} onClick={(e) => handleTipLabel(e)}>50%</StyledTipText>
-            <StyledTipOption value={'custom'} checked={tip === 'custom'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={'custom'} onClick={(e) => handleTipLabel(e)}>Custom</StyledTipText>
+            <StyledTipOption value={5} checked={tipPercentage === '5'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={5} onClick={(e) => handleTipLabel(e)}>5%</StyledTipText>
+            <StyledTipOption value={10} checked={tipPercentage === '10'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={10} onClick={(e) => handleTipLabel(e)}>10%</StyledTipText>
+            <StyledTipOption value={15} checked={tipPercentage === '15'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={15} onClick={(e) => handleTipLabel(e)}>15%</StyledTipText>
+            <StyledTipOption value={25} checked={tipPercentage === '25'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={25} onClick={(e) => handleTipLabel(e)}>25%</StyledTipText>
+            <StyledTipOption value={50} checked={tipPercentage === '50'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={50} onClick={(e) => handleTipLabel(e)}>50%</StyledTipText>
+            <StyledTipOption value={'custom'} checked={tipPercentage === 'custom'} onChange={(e) => handleTip(e)} type="radio"/><StyledTipText data-tip={'custom'} onClick={(e) => handleTipLabel(e)}>Custom</StyledTipText>
           </StyledTipForm>
         </Container>
       </Container>
@@ -56,7 +93,7 @@ const App = () => {
         <h1>Number of People</h1>
         <Container flexDir={'row'}>
           <p>icon person</p>
-          <p>5</p>
+          <input value={people} onChange={(e) => handlePeople(e)} type="text" />
         </Container>
       </Container>
 
@@ -67,7 +104,7 @@ const App = () => {
             <p>/ person</p>
           </Container>
           <Container>
-            <p>$4.27</p>
+            <p>${tipAmount}</p>
           </Container>
         </Container>
 
@@ -78,7 +115,7 @@ const App = () => {
               <p>/ person</p>
             </Container>
             <Container>
-              <p>$32.79</p>
+              <p>${billperPerson}</p>
             </Container>
           </Container>
 
