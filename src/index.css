@@ -20,3 +20,51 @@ li {
 a {
   text-decoration: none;
 }
+
+/* CSS GRID (USING FLEXBOX) */
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+/* Styling */
+
+.tip-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+  
+.tip-container .tip-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+  gap: 16px;
+}
+
+.tip-group {
+  padding: 16px;
+}
+
+.tip-group:last-of-type {
+  padding-top: 0px;
+}
+
+.tip-container .tip-group .tip-subgroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+}

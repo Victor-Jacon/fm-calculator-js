@@ -8,6 +8,10 @@
     "[CSS] Style the first element" : "https://css-tricks.com/almanac/selectors/f/first-of-type/",
     "[CSS] Style the last child element of a form" : "https://css-tricks.com/almanac/selectors/l/last-of-type/",
     "[JS] Return multiple values/object/array from a JS function": "https://www.javascripttutorial.net/javascript-return-multiple-values/",
-    "[JS] Convert string to Number": "https://flaviocopes.com/how-to-convert-string-to-number-javascript/"
+    "[JS] Convert string to Number": "https://flaviocopes.com/how-to-convert-string-to-number-javascript/",
+    "[Styled-Components] How to style -webkit properties using styled-components": "https://stackoverflow.com/questions/47921532/style-a-slider-thumb-with-styled-components",
+    "[Styled-Components] How to style placeholder text using styled-components": "https://spectrum.chat/styled-components/general/how-do-i-style-an-input-placeholder-with-styled-components~ebcb20d8-c1b4-4deb-ba6f-961fd976e58e",
+    "[CSS FLEXBOX] Como fazer um sistema estilo grid-layout usando flexbox?": "https://dev.to/drews256/ridiculously-easy-row-and-column-layouts-with-flexbox-1k01",
+    "[LocalStorage, SessionStorage, Cookies] How to use all browser storage options":"https://www.youtube.com/watch?v=GihQAC1I39Q&ab_channel=WebDevSimplified"
   }
 }
