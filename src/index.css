@@ -3,9 +3,10 @@
 
 /* CSS - RESET */
 
-body, p, h1, ul, li, blockquote {
+body, div, a, p, h1, h2, ul, li, blockquote, input {
   padding: 0px;
   margin: 0px;
+  border: 0px;
   box-sizing: border-box;
 }
 
@@ -19,6 +20,11 @@ li {
 
 a {
   text-decoration: none;
+}
+
+button {
+  outline: none;
+  border: none;
 }
 
 /* CSS GRID (USING FLEXBOX) */
@@ -41,30 +47,38 @@ a {
 
 .tip-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-}
-  
-.tip-container .tip-group {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 1;
   gap: 16px;
-}
-
-.tip-group {
   padding: 16px;
+
+  flex-wrap: wrap;
 }
 
-.tip-group:last-of-type {
+/* .tip-group:last-of-type {
   padding-top: 0px;
-}
+} */
 
-.tip-container .tip-group .tip-subgroup {
+.tip-container .tip-subgroup {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 1;
+}
+
+.tip-container .tip-subgroup .first-tip-text {
+  left: -89px;
+  top: -18px
+}
+
+.person-icon {
+  position: absolute;
+  top: 15px;
+  left: 17px;
+}
+
+.dollar-icon {
+  position: absolute;
+  top: 22px;
+  left: 19px;
 }

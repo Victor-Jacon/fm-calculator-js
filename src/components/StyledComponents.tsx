@@ -30,10 +30,15 @@ export const Container = styled.div<ContainerProps>`
   align-items: ${({alItems}) => alItems ? alItems : 'center'};
   justify-content: ${({justContent}) => justContent ? justContent : 'center'};
   background-color: ${({bgColor}) => bgColor ? bgColor : 'red' };
+  flex-wrap: wrap;
+  flex-shrink: 1;
 
   width: ${({width}) => width ? width : 'initial'};
   height: ${({fullScreen}) => fullScreen ? '100vh' : 'initial'};
   gap: 16px;
+
+  /* General styling */
+  font-family: ${fontFamily}
 `
 
 export interface RowAndColumnProps {
@@ -70,24 +75,29 @@ export const StyledTipForm = styled.form`
 `
 
 /*  ##################### */
-export const StyledTipText = styled.label`
-width: 0px;
-height: 0px;
 
-position: relative;
-left: -93px;
-top: -16px;
+interface LabelProps {
+  active?: boolean;
+}
 
-color:${colors.lightGrayishCyan2};
-font-size: ${formInputSize};
-font-weight: bold;
-font-family: ${fontFamily};
-text-align: center;
+export const StyledTipText = styled.label<LabelProps>`
+  width: 0px;
+  height: 0px;
+
+  position: relative;
+  left: -96px;
+  top: -18px;
+
+  color:${({ active }) => active ? `${colors.veryDarkCyan}` : `${colors.lightGrayishCyan2}`};
+  font-size: ${formInputSize};
+  font-weight: bold;
+  font-family: ${fontFamily};
+  text-align: center;
 `
 
 export const StyledTipOption = styled.input`
-  width: 147px;
-  height: 47px;
+  width: 146px;
+  height: 48px;
 
   align-self: center;
   flex-shrink: 1;
@@ -107,27 +117,35 @@ export const StyledTipOption = styled.input`
   /*disables default appearance of radio*/
   -webkit-appearance: none; 
   -moz-appearance: none;
-  &:checked { background-color: ${colors.strongCyan}; }
   &:focus { outline: none;  }
+
+  &:checked { 
+    background-color: ${colors.strongCyan}; 
+  }
 `
 
 export const CustomTipOption = styled(StyledTipOption)`
-  background-color: ${colors.lightGrayishCyan};
+  background-color: ${colors.lightGrayishCyan2};
   color: ${colors.veryDarkCyan};
   text-align: right;
+  padding-right: 16px;
+  border: 2px solid white;
 
-  /* reset */
-  border: 0px;
-  padding: 0px;
+  &::placeholder {
+    color: ${colors.darkGrayishCyan};
+    padding-left: 24px;
+  }
 
+  &:focus {
+    border: 2px solid;
+    border-color: ${colors.strongCyan};
+  }
+
+  /* RESET */
   &::-webkit-outer-spin-button {
   -webkit-appearance: none;
   }
   &::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  }
-  &::placeholder {
-    color: ${colors.darkGrayishCyan};
-    text-align: center;
   }
 `

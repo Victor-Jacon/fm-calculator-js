@@ -6,7 +6,7 @@ import Tips from './components/Tips';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Tips />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
