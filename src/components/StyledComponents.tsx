@@ -183,7 +183,7 @@ export const Logo = styled.div`
   display: flex;
   background-color: ${colors.lightGrayishCyan};
 
-  padding-top: 50px;
+  padding-top: 56px;
   padding-bottom: 24px;
 
   @media (min-width: 1024px) {
