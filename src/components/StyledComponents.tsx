@@ -261,7 +261,7 @@ export const IconInput = styled.p`
 export const BillResults = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
   flex-shrink: 1;
@@ -413,12 +413,19 @@ export const Card = styled.div`
         flex-grow: 1;
       }
 
+      /* reset */
+      ${TipContainer} {
+
+        padding: 0px;
+        gap: 0px;
+      }
+
       ${TipContainer} {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        /* reset */
-        padding: 0px;
+        row-gap: 16px; // reset
+        column-gap: 14px;
       }
 
       ${BillValueColumn} {
@@ -430,12 +437,13 @@ export const Card = styled.div`
       }
 
       ${StyledTipOption} {
-        width: 105px;
-        height: 44px;
+        width: 117px;
+        height: 48px;
       }
 
       ${StyledTipText} {
-        left: -72px;
+        left: -81px;
+        top: -17px;
       }
 
       ${CustomTipOption} {
@@ -447,11 +455,23 @@ export const Card = styled.div`
         }
       }
 
+      ${ResultsRow} {
+        width: 100%;
+      }
+
+      ${ResultsColumn} {
+        width: 100%;
+      }
+
       ${BillResults} {
         width: ${desktopBillResultsWidth};
         height: ${desktopBillResultsHeight};
         /* reset */
         padding: 0px;
+      }
+
+      ${Sum} {
+        font-size: 47px;
       }
 
       /* PIXEL PERFECT DESKTOP */
@@ -470,28 +490,59 @@ export const Card = styled.div`
       }
 
       #desktop-column-2 {
-        padding-right: 31px;
+        display: flex;
+        padding-top: 32px;
+        padding-right: 32px;
       }
 
       #bill-value-column {
+        padding-top: 45px;
         padding-left: 47px;
+        padding-bottom: 9px;
       }
 
       #title-tip {
-        padding-left: 48px;
+        padding-left: 46px;
+        padding-bottom: 16px;
       }
 
       #tip-container {
-        padding-left: 48px;
+        padding-left: 46px;
+        padding-bottom: 42px;
       }
 
       #people-column {
-        padding-left: 48px;
+        padding-left: 47px;
       }
 
-      #bill-results {
+      #person-icon {
+        top: 16px;
+        left: 16px;
       }
 
-      
+      #results-row {
+        padding-top: 43px;
+        padding-left: 39px;
+      }
+
+      #results-row-2 {
+        padding-left: 39px;
+        padding-top: 27px;
+      }
+
+      #results-row-3 {
+        padding-top: 120px;
+        padding-left: 40px;
+
+        button {
+          width: 332px;
+        }
+      }
+
+      #sum {
+        padding-right: 41px;
+        padding-bottom: 1px;
+      }
+
     }
 `

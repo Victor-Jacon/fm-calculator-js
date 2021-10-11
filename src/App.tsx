@@ -120,7 +120,7 @@ const App = () => {
           <BillValueColumn id="bill-value-column">
             <Title>Bill</Title>
             <FormContainer id="form-container">
-              <BillInput value={bill} onChange={(e) => handleBill(e)} placeholder="0" type="text" />
+              <BillInput value={bill} onChange={(e) => handleBill(e)} placeholder="0" type="text" id='bill-input'/>
               <DollarIcon />
             </FormContainer>
           </BillValueColumn>
@@ -178,8 +178,8 @@ const App = () => {
                 <Detail id='detail'>/ person</Detail>
               </ResultsColumn>
 
-              <ResultsColumn id="results-column">
-                <Sum>${tipAmount.toFixed(2)}</Sum>
+              <ResultsColumn id="results-column results-column-sum">
+                <Sum id='sum'>${tipAmount.toFixed(2)}</Sum>
               </ResultsColumn>
 
             </ResultsRow>
@@ -191,8 +191,8 @@ const App = () => {
                 <Detail id='detail'>/ person</Detail>
               </ResultsColumn>
 
-              <ResultsColumn id="results-column">
-                <Sum>${billPerPerson.toFixed(2)}</Sum>
+              <ResultsColumn id="results-column results-column-sum">
+                <Sum id='sum'>${billPerPerson.toFixed(2)}</Sum>
               </ResultsColumn>
 
             </ResultsRow>

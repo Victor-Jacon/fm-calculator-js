@@ -82,3 +82,10 @@ button {
   top: 22px;
   left: 19px;
 }
+
+@media (min-width: 1024px) {
+  .tip-container .tip-subgroup .first-tip-text {
+    left: -74px;
+    top: -17px
+  }
+}
