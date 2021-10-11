@@ -1,11 +1,9 @@
-import { parse } from 'querystring';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import styled from 'styled-components'
 import DollarIcon from './components/DollarIcon';
 import PersonIcon from './components/PersonIcon';
 import { Container,TipSubgroup, StyledTipOption, StyledTipText, CustomTipOption, Sum, ResultsRow, ResultsColumn, ButtonResults, Logo, Card, BillValueColumn, Title, FormContainer, BillInput, TitleTip, PeopleColumn, PeopleRow, BillResults, Detail, Subheading, PeopleWarning, TipCard, TipContainer, DesktopColumn } from './components/StyledComponents';
-import { colors, formInputSize, fontFamily } from './components/StyledComponents'
+import { colors } from './components/StyledComponents'
 
 const App = () => {
   // handleBil + people + tip + customTip
@@ -44,8 +42,6 @@ const App = () => {
     // If user clicks in other option, the custom tip is reset
     setCustomTip('');
   }
-
-  const [label, setLabel] = useState<boolean>(false); // [helper] handleTip + label text color
 
   const handleTipPercentage = (tipValue: string) => {
     if (tipPercentage === tipValue) {

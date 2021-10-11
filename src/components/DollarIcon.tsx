@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-
 const DollarIcon = () => {
   return (
     <div id='dollar-icon' className='dollar-icon'>

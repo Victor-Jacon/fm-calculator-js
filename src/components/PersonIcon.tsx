@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-
 const PersonIcon = () => {
   return (
     <div id='person-icon' className='person-icon'>
