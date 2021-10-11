@@ -19,6 +19,11 @@ export const cardMaxWidth = '377px'
 export const desktopCardMaxWidth = '920px'
 export const desktopCardHeight = '483px'
 
+export const desktopSectionWidth = '341px'
+
+export const desktopBillResultsWidth = '413px'
+export const desktopBillResultsHeight = '417px'
+
 // Container
 export interface ContainerProps {
   bgColor?: any;
@@ -117,9 +122,9 @@ export const StyledTipOption = styled.input`
   &:checked { 
     background-color: ${colors.strongCyan}; 
   }
-    ${TipSubgroup}:hover & {
-      background-color: #C5E4E7;
-    }
+  ${TipSubgroup}:hover & {
+    background-color: #C5E4E7;
+  }
 `
 
 interface LabelProps {
@@ -170,88 +175,6 @@ export const CustomTipOption = styled(StyledTipOption)`
   -webkit-appearance: none;
   }
 `
-
-export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 84vh;
-  max-width: ${cardMaxWidth};
-  flex-shrink: 1;
-
-  background-color: white;
-  border-radius: 24px 24px 0px 0px;
-
-  /* PIXEL PERFECT DESIGN */
-  #bill-value-column {
-    padding-top: 31px;
-    padding-bottom: 1px;
-  }
-
-  #form-container {
-    padding-top: 8px;
-    padding-bottom: 26px;
-  }
-
-  #tip-container {
-    padding-bottom: 32px;
-  }
-
-  #number-of-people {
-    padding-bottom: 4px;
-    padding-right: 24px;
-  }
-
-  #people-column {
-    padding-bottom: 30px;
-  }
-
-    #bill-results {
-      padding-left: 25px;
-    }
-
-    #results-column {
-      padding-right: 23px;
-    }
-
-    #results-row {
-      padding-right: 3px;
-      padding-top: 38px;
-    }
-
-    #results-row-2 {
-      padding-right: 3px;
-      padding-top: 20px;
-    }
-
-    #results-row-3 {
-      padding-top: 32px;
-    }
-
-    #detail {
-      line-height: 22px;
-    }
-
-    /* Responsive */
-    @media (min-width: 1024px) {
-      max-width: ${desktopCardMaxWidth};
-      height: ${desktopCardHeight};
-      border-radius: 24px;
-      flex-direction: row;
-
-      #tip-container {
-        display: flex;
-        flex-direction: row;
-      }
-
-      #tip-subgroup {
-        display: flex;
-        flex-direction: row;
-      }
-    }
-`
-
 export const DesktopColumn = styled.div`
 `
 
@@ -261,6 +184,10 @@ export const Logo = styled.div`
 
   padding-top: 52px;
   padding-bottom: 24px;
+
+  @media (min-width: 1024px) {
+    padding-bottom: 71px;
+  }
 `
 
 interface BillInputProps {
@@ -409,4 +336,151 @@ export const ButtonResults = styled.button`
 
   width: 281px;
   height: 48px;
+`
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 84vh;
+  max-width: ${cardMaxWidth};
+  flex-shrink: 1;
+
+  background-color: white;
+  border-radius: 24px 24px 0px 0px;
+
+  /* POSITIONING - PIXEL PERFECT DESIGN */
+  #bill-value-column {
+    padding-top: 31px;
+    padding-bottom: 1px;
+  }
+
+  #form-container {
+    padding-top: 8px;
+    padding-bottom: 26px;
+  }
+
+  #tip-container {
+    padding-bottom: 32px;
+  }
+
+  #number-of-people {
+    padding-bottom: 4px;
+    padding-right: 24px;
+  }
+
+  #people-column {
+    padding-bottom: 30px;
+  }
+
+    #bill-results {
+      padding-left: 25px;
+    }
+
+    #results-column {
+      padding-right: 23px;
+    }
+
+    #results-row {
+      padding-right: 3px;
+      padding-top: 38px;
+    }
+
+    #results-row-2 {
+      padding-right: 3px;
+      padding-top: 20px;
+    }
+
+    #results-row-3 {
+      padding-top: 32px;
+    }
+
+    #detail {
+      line-height: 22px;
+    }
+
+    /* Responsive */
+    @media (min-width: 1024px) {
+      width: 924px; // for development reasons, delete after.
+      max-width: ${desktopCardMaxWidth};
+      height: ${desktopCardHeight};
+      border-radius: 24px;
+      flex-direction: row;
+
+      ${DesktopColumn} {
+        flex-grow: 1;
+      }
+
+      ${TipContainer} {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        /* reset */
+        padding: 0px;
+      }
+
+      ${BillValueColumn} {
+        align-items: flex-start;
+      }
+
+      ${BillInput} {
+        width: 380px;
+      }
+
+      ${StyledTipOption} {
+        width: 105px;
+        height: 44px;
+      }
+
+      ${StyledTipText} {
+        left: -72px;
+      }
+
+      ${CustomTipOption} {
+        padding-right: 0px;
+
+        &::placeholder {
+          text-align: center;
+          padding-left: 0px;
+        }
+      }
+
+      ${BillResults} {
+        width: ${desktopBillResultsWidth};
+        height: ${desktopBillResultsHeight};
+      }
+
+      /* PIXEL PERFECT DESKTOP */
+
+      #logo {
+       /* the positioning is inside the logo styled-component. reason: some bug happened. */ 
+      }
+
+      #desktop-column {
+        padding-left: 1px;
+      }
+
+      #desktop-column-2 {
+        padding-left: 1px;
+      }
+
+      #bill-value-column {
+        padding-left: 47px;
+      }
+
+      #title-tip {
+        padding-left: 48px;
+      }
+
+      #tip-container {
+        padding-left: 48px;
+      }
+
+      #people-column {
+        padding-left: 48px;
+      }
+
+      
+    }
 `

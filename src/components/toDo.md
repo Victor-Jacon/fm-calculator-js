@@ -21,6 +21,7 @@
     ✅-Converter variavel people para number para a logica conseguir pegar. 
     ✅-alinhar o warning com a largura do input numberOfPeople
 ✅-Quando der hover (input ou label): o background color precisa ficar clarinho
+-Mudar cor do ponteiro de texto
 
 ### Responsivo
 -Fazer a versão desktop:

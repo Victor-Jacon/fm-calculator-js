@@ -126,7 +126,7 @@ const App = () => {
           </BillValueColumn>
           
           <TipCard id="tip-card">
-            <TitleTip>Select Tip %</TitleTip>
+            <TitleTip id='title-tip'>Select Tip %</TitleTip>
             <TipContainer className='tip-container' id='tip-container'>
               <TipSubgroup className='tip-subgroup'>
                   <StyledTipOption value={5} checked={handleTipPercentage('5')} onChange={(e) => handleTip(e)} type="radio"/>
