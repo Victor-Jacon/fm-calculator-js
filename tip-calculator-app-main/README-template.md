@@ -12,20 +12,21 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: https://your-solution-url.com
-- Live Site URL: https://your-live-site-url.com
+- Solution URL: https://github.com/Victor-Jacon/fm-calculator-js
+- Live Site URL: https://fm-calculator-js.vercel.app/
 
 ### Built with
 
-- HTML
-- Flexbox, Styled Components
+- [HTML]
+- [Flexbox]
+- [StyledComponents]
+- [CustomCSS]
 - [React](https://reactjs.org/) - JS library
 - [Typescript]
 - [Testing] Jest
 - [Responsive] Mobile-first workflow
 
 ## Author
-
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website: https://www.linkedin.com/in/victor-jacon-7444b819a/
+- Github: https://github.com/Victor-Jacon
+- Frontend Mentor - [@Victor-Jacon] https://www.frontendmentor.io/profile/Victor-Jacon
