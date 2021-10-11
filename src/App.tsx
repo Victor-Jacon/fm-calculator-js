@@ -118,7 +118,7 @@ const App = () => {
       <Card id="card">
         <DesktopColumn id='desktop-column'>
           <BillValueColumn id="bill-value-column">
-            <Title>Bill</Title>
+            <Title id='bill-title'>Bill</Title>
             <FormContainer id="form-container">
               <BillInput value={bill} onChange={(e) => handleBill(e)} placeholder="0" type="text" id='bill-input'/>
               <DollarIcon />

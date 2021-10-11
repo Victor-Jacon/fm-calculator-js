@@ -152,6 +152,7 @@ export const CustomTipOption = styled(StyledTipOption)`
   text-align: right;
   padding-right: 16px;
   border: 2px solid white;
+  caret-color: ${colors.strongCyan};
 
   &::placeholder {
     color: ${colors.darkGrayishCyan};
@@ -182,10 +183,11 @@ export const Logo = styled.div`
   display: flex;
   background-color: ${colors.lightGrayishCyan};
 
-  padding-top: 52px;
+  padding-top: 50px;
   padding-bottom: 24px;
 
   @media (min-width: 1024px) {
+    padding-top: 150px;
     padding-bottom: 71px;
   }
 `
@@ -204,6 +206,8 @@ export const BillInput = styled.input<BillInputProps>`
   line-height: 48px;
   border-radius: 8px;
   border: ${({ warning }) => warning ? '2px solid red' : '2px solid white' };
+  caret-color: ${colors.strongCyan};
+
 
   width: ${sectionWidth};
   padding-right: 16px;
@@ -352,17 +356,33 @@ export const Card = styled.div`
 
   /* POSITIONING - PIXEL PERFECT DESIGN */
   #bill-value-column {
-    padding-top: 31px;
+    padding-top: 32px;
+    padding-left: 25px;
     padding-bottom: 1px;
   }
 
+  #bill-title {
+    padding-left: 9px;
+  }
+
   #form-container {
-    padding-top: 8px;
-    padding-bottom: 26px;
+    padding-top: 6px;
+    padding-bottom: 29px;
+    padding-left: 9px;
+  }
+
+  #dollar-icon {
+    top: 22px;
+    left: 26px;
   }
 
   #tip-container {
     padding-bottom: 32px;
+  }
+
+  .tip-container .tip-subgroup .first-tip-text {
+    left: -90px;
+    top: -17px
   }
 
   #number-of-people {
@@ -372,177 +392,184 @@ export const Card = styled.div`
 
   #people-column {
     padding-bottom: 30px;
+    padding-left: 32px;
   }
 
-    #bill-results {
-      padding-left: 25px;
+  #bill-results {
+    padding-left: 25px;
+  }
+
+  #results-column {
+    padding-right: 23px;
+  }
+
+  #results-row {
+    padding-right: 0px;
+    padding-top: 38px;
+  }
+
+  #results-row-2 {
+    padding-right: 0px;
+    padding-top: 22px;
+  }
+
+  #results-row-3 {
+    padding-top: 32px;
+  }
+
+  ${Sum} {
+    padding-right: 27px;
+  }
+
+  #detail {
+    line-height: 22px;
+  }
+
+  /* Responsive */
+  @media (min-width: 1024px) {
+    width: 924px; // for development reasons, delete after.
+    max-width: ${desktopCardMaxWidth};
+    height: ${desktopCardHeight};
+    border-radius: 24px;
+    flex-direction: row;
+    align-items: flex-start;
+
+    ${DesktopColumn} {
+      flex-grow: 1;
     }
 
-    #results-column {
-      padding-right: 23px;
+    /* reset */
+    ${TipContainer} {
+
+      padding: 0px;
+      gap: 0px;
+    }
+
+    ${TipContainer} {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      row-gap: 16px; // reset
+      column-gap: 14px;
+    }
+
+    ${BillValueColumn} {
+      align-items: flex-start;
+    }
+
+    ${BillInput} {
+      width: 380px;
+    }
+
+    ${StyledTipOption} {
+      width: 117px;
+      height: 48px;
+    }
+
+    ${StyledTipText} {
+      left: -81px;
+      top: -17px;
+    }
+
+    ${CustomTipOption} {
+      padding-right: 8px;
+
+      &::placeholder {
+        text-align: center;
+        padding: 0px;
+        padding-left: 8px;
+      }
+    }
+
+    ${ResultsRow} {
+      width: 100%;
+    }
+
+    ${ResultsColumn} {
+      width: 100%;
+    }
+
+    ${BillResults} {
+      width: ${desktopBillResultsWidth};
+      height: ${desktopBillResultsHeight};
+      /* reset */
+      padding: 0px;
+    }
+
+    ${Sum} {
+      font-size: 47px;
+    }
+
+    /* PIXEL PERFECT DESKTOP */
+
+    // RESET
+    #desktop-column, #desktop-column-2, #bill-value-column, #people-column, #bill-results, #results-column, #results-row, #results-row-2, #results-row-3 {
+      padding: 0px;
+    }
+
+    #desktop-column {
+      padding-left: 1px;
+    }
+
+    #desktop-column-2 {
+      display: flex;
+      padding-top: 32px;
+      padding-right: 32px;
+    }
+
+    #bill-value-column {
+      padding-top: 47px;
+      padding-left: 38px;
+      padding-bottom: 8px;
+    }
+
+    #title-tip {
+      padding-left: 46px;
+      padding-bottom: 16px;
+    }
+
+    #tip-container {
+      padding-left: 46px;
+      padding-bottom: 41px;
+    }
+
+    .tip-container .tip-subgroup .first-tip-text {
+      left: -74px;
+      top: -17px
+    }
+
+    #people-column {
+      padding-left: 47px;
+    }
+
+    #person-icon {
+      top: 16px;
+      left: 16px;
     }
 
     #results-row {
-      padding-right: 3px;
-      padding-top: 38px;
+      padding-top: 43px;
+      padding-left: 39px;
     }
 
     #results-row-2 {
-      padding-right: 3px;
-      padding-top: 20px;
+      padding-left: 39px;
+      padding-top: 27px;
     }
 
     #results-row-3 {
-      padding-top: 32px;
+      padding-top: 120px;
+      padding-left: 40px;
+
+      button {
+        width: 332px;
+      }
     }
 
-    #detail {
-      line-height: 22px;
+    #sum {
+      padding-right: 41px;
+      padding-bottom: 1px;
     }
 
-    /* Responsive */
-    @media (min-width: 1024px) {
-      width: 924px; // for development reasons, delete after.
-      max-width: ${desktopCardMaxWidth};
-      height: ${desktopCardHeight};
-      border-radius: 24px;
-      flex-direction: row;
-      align-items: flex-start;
-
-      ${DesktopColumn} {
-        flex-grow: 1;
-      }
-
-      /* reset */
-      ${TipContainer} {
-
-        padding: 0px;
-        gap: 0px;
-      }
-
-      ${TipContainer} {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        row-gap: 16px; // reset
-        column-gap: 14px;
-      }
-
-      ${BillValueColumn} {
-        align-items: flex-start;
-      }
-
-      ${BillInput} {
-        width: 380px;
-      }
-
-      ${StyledTipOption} {
-        width: 117px;
-        height: 48px;
-      }
-
-      ${StyledTipText} {
-        left: -81px;
-        top: -17px;
-      }
-
-      ${CustomTipOption} {
-        padding-right: 0px;
-
-        &::placeholder {
-          text-align: center;
-          padding-left: 0px;
-        }
-      }
-
-      ${ResultsRow} {
-        width: 100%;
-      }
-
-      ${ResultsColumn} {
-        width: 100%;
-      }
-
-      ${BillResults} {
-        width: ${desktopBillResultsWidth};
-        height: ${desktopBillResultsHeight};
-        /* reset */
-        padding: 0px;
-      }
-
-      ${Sum} {
-        font-size: 47px;
-      }
-
-      /* PIXEL PERFECT DESKTOP */
-
-      // RESET
-      #desktop-column, #desktop-column-2, #bill-value-column, #people-column, #bill-results, #results-column, #results-row, #results-row-2, #results-row-3 {
-        padding: 0px;
-      }
-
-      #logo {
-       /* the positioning is inside the logo styled-component. reason: some bug happened. */ 
-      }
-
-      #desktop-column {
-        padding-left: 1px;
-      }
-
-      #desktop-column-2 {
-        display: flex;
-        padding-top: 32px;
-        padding-right: 32px;
-      }
-
-      #bill-value-column {
-        padding-top: 45px;
-        padding-left: 47px;
-        padding-bottom: 9px;
-      }
-
-      #title-tip {
-        padding-left: 46px;
-        padding-bottom: 16px;
-      }
-
-      #tip-container {
-        padding-left: 46px;
-        padding-bottom: 42px;
-      }
-
-      #people-column {
-        padding-left: 47px;
-      }
-
-      #person-icon {
-        top: 16px;
-        left: 16px;
-      }
-
-      #results-row {
-        padding-top: 43px;
-        padding-left: 39px;
-      }
-
-      #results-row-2 {
-        padding-left: 39px;
-        padding-top: 27px;
-      }
-
-      #results-row-3 {
-        padding-top: 120px;
-        padding-left: 40px;
-
-        button {
-          width: 332px;
-        }
-      }
-
-      #sum {
-        padding-right: 41px;
-        padding-bottom: 1px;
-      }
-
-    }
+  }
 `
