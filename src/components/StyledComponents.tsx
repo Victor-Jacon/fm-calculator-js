@@ -16,6 +16,9 @@ export const fontFamily = `'Space Mono', monospace`;
 export const sectionWidth = '310px'
 export const cardMaxWidth = '377px'
 
+export const desktopCardMaxWidth = '920px'
+export const desktopCardHeight = '483px'
+
 // Container
 export interface ContainerProps {
   bgColor?: any;
@@ -64,6 +67,12 @@ export const Column = styled.div<RowAndColumnProps>`
   flex: 1;
 `
 
+export const TipCard = styled.div`
+`
+
+export const TipContainer = styled.div`
+`
+
 // Radio Button
 export const StyledTipForm = styled.form`
   display: flex;
@@ -108,9 +117,9 @@ export const StyledTipOption = styled.input`
   &:checked { 
     background-color: ${colors.strongCyan}; 
   }
-  ${TipSubgroup}:hover & {
-    background-color: #C5E4E7;
-  }
+    ${TipSubgroup}:hover & {
+      background-color: #C5E4E7;
+    }
 `
 
 interface LabelProps {
@@ -224,6 +233,26 @@ export const Card = styled.div`
       line-height: 22px;
     }
 
+    /* Responsive */
+    @media (min-width: 1024px) {
+      max-width: ${desktopCardMaxWidth};
+      height: ${desktopCardHeight};
+      border-radius: 24px;
+      flex-direction: row;
+
+      #tip-container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      #tip-subgroup {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+`
+
+export const DesktopColumn = styled.div`
 `
 
 export const Logo = styled.div`

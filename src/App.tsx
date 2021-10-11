@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components'
 import DollarIcon from './components/DollarIcon';
 import PersonIcon from './components/PersonIcon';
-import { Container,TipSubgroup, StyledTipOption, StyledTipText, CustomTipOption, Sum, ResultsRow, ResultsColumn, ButtonResults, Logo, Card, BillValueColumn, Title, FormContainer, BillInput, TitleTip, PeopleColumn, PeopleRow, BillResults, Detail, Subheading, PeopleWarning } from './components/StyledComponents';
+import { Container,TipSubgroup, StyledTipOption, StyledTipText, CustomTipOption, Sum, ResultsRow, ResultsColumn, ButtonResults, Logo, Card, BillValueColumn, Title, FormContainer, BillInput, TitleTip, PeopleColumn, PeopleRow, BillResults, Detail, Subheading, PeopleWarning, TipCard, TipContainer, DesktopColumn } from './components/StyledComponents';
 import { colors, formInputSize, fontFamily } from './components/StyledComponents'
 
 const App = () => {
@@ -116,93 +116,97 @@ const App = () => {
       </Logo>
 
       <Card id="card">
-        <BillValueColumn id="bill-value-column">
-          <Title>Bill</Title>
-          <FormContainer id="form-container">
-            <BillInput value={bill} onChange={(e) => handleBill(e)} placeholder="0" type="text" />
-            <DollarIcon />
-          </FormContainer>
-        </BillValueColumn>
-        
-        <>
-          <TitleTip>Select Tip %</TitleTip>
-          <div className='tip-container' id='tip-container'>
-            <TipSubgroup className='tip-subgroup'>
-                <StyledTipOption value={5} checked={handleTipPercentage('5')} onChange={(e) => handleTip(e)} type="radio"/>
-                <StyledTipText active={handleTipPercentage('5')} data-tip={5} onClick={(e) => handleTipLabel(e)} className="first-tip-text">5%</StyledTipText>
-            </TipSubgroup>
-            <TipSubgroup className='tip-subgroup'>
-                <StyledTipOption value={10} checked={handleTipPercentage('10')} onChange={(e) => handleTip(e)} type="radio"/>
-                <StyledTipText active={handleTipPercentage('10')} data-tip={10} onClick={(e) => handleTipLabel(e)}>10%</StyledTipText>
-            </TipSubgroup>
-            <TipSubgroup className='tip-subgroup'>
-                <StyledTipOption value={15} checked={handleTipPercentage('15')} onChange={(e) => handleTip(e)} type="radio"/>
-                <StyledTipText active={handleTipPercentage('15')} data-tip={15} onClick={(e) => handleTipLabel(e)}>15%</StyledTipText>
-            </TipSubgroup>
-            <TipSubgroup className='tip-subgroup'>
-                <StyledTipOption value={25} checked={handleTipPercentage('25')} onChange={(e) => handleTip(e)} type="radio"/>
-                <StyledTipText active={handleTipPercentage('25')} data-tip={25} onClick={(e) => handleTipLabel(e)}>25%</StyledTipText>
-            </TipSubgroup>
-            <TipSubgroup className='tip-subgroup'>
-                <StyledTipOption value={50} checked={handleTipPercentage('50')} onChange={(e) => handleTip(e)} type="radio"/>
-                <StyledTipText active={handleTipPercentage('50')} data-tip={50} onClick={(e) => handleTipLabel(e)}>50%</StyledTipText>
-            </TipSubgroup>
-            <div className='custom-tip'>
-                <CustomTipOption value={customTip} onChange={(e) => handleCustom(e)} onClick={() => clearTipPercentage()} placeholder="Custom" type="number" />
-            </div>
-          </div>
-        </>
+        <DesktopColumn id='desktop-column'>
+          <BillValueColumn id="bill-value-column">
+            <Title>Bill</Title>
+            <FormContainer id="form-container">
+              <BillInput value={bill} onChange={(e) => handleBill(e)} placeholder="0" type="text" />
+              <DollarIcon />
+            </FormContainer>
+          </BillValueColumn>
+          
+          <TipCard id="tip-card">
+            <TitleTip>Select Tip %</TitleTip>
+            <TipContainer className='tip-container' id='tip-container'>
+              <TipSubgroup className='tip-subgroup'>
+                  <StyledTipOption value={5} checked={handleTipPercentage('5')} onChange={(e) => handleTip(e)} type="radio"/>
+                  <StyledTipText active={handleTipPercentage('5')} data-tip={5} onClick={(e) => handleTipLabel(e)} className="first-tip-text">5%</StyledTipText>
+              </TipSubgroup>
+              <TipSubgroup className='tip-subgroup'>
+                  <StyledTipOption value={10} checked={handleTipPercentage('10')} onChange={(e) => handleTip(e)} type="radio"/>
+                  <StyledTipText active={handleTipPercentage('10')} data-tip={10} onClick={(e) => handleTipLabel(e)}>10%</StyledTipText>
+              </TipSubgroup>
+              <TipSubgroup className='tip-subgroup'>
+                  <StyledTipOption value={15} checked={handleTipPercentage('15')} onChange={(e) => handleTip(e)} type="radio"/>
+                  <StyledTipText active={handleTipPercentage('15')} data-tip={15} onClick={(e) => handleTipLabel(e)}>15%</StyledTipText>
+              </TipSubgroup>
+              <TipSubgroup className='tip-subgroup'>
+                  <StyledTipOption value={25} checked={handleTipPercentage('25')} onChange={(e) => handleTip(e)} type="radio"/>
+                  <StyledTipText active={handleTipPercentage('25')} data-tip={25} onClick={(e) => handleTipLabel(e)}>25%</StyledTipText>
+              </TipSubgroup>
+              <TipSubgroup className='tip-subgroup'>
+                  <StyledTipOption value={50} checked={handleTipPercentage('50')} onChange={(e) => handleTip(e)} type="radio"/>
+                  <StyledTipText active={handleTipPercentage('50')} data-tip={50} onClick={(e) => handleTipLabel(e)}>50%</StyledTipText>
+              </TipSubgroup>
+              <div className='custom-tip'>
+                  <CustomTipOption value={customTip} onChange={(e) => handleCustom(e)} onClick={() => clearTipPercentage()} placeholder="Custom" type="number" />
+              </div>
+            </TipContainer>
+          </TipCard>
 
-        <PeopleColumn id='people-column'>
-          <PeopleRow>
-            <Title id='number-of-people'>Number of People</Title>
-            {Number(people) === 0 && (
-              <PeopleWarning>Can't be zero</PeopleWarning>
-            )}
-          </PeopleRow>
-          <FormContainer id='form-container-2'>
-            <BillInput warning={Number(people) === 0} value={people} onChange={(e) => handlePeople(e)} placeholder="0" type="text" />
-            <PersonIcon />
-          </FormContainer>
-        </PeopleColumn>
+          <PeopleColumn id='people-column'>
+            <PeopleRow>
+              <Title id='number-of-people'>Number of People</Title>
+              {Number(people) === 0 && (
+                <PeopleWarning>Can't be zero</PeopleWarning>
+              )}
+            </PeopleRow>
+            <FormContainer id='form-container-2'>
+              <BillInput warning={Number(people) === 0} value={people} onChange={(e) => handlePeople(e)} placeholder="0" type="text" />
+              <PersonIcon />
+            </FormContainer>
+          </PeopleColumn>
+        </DesktopColumn>
 
-        <BillResults id="bill-results">
+        <DesktopColumn id='desktop-column-2'>
+          <BillResults id="bill-results">
 
-          <ResultsRow id="results-row">
+            <ResultsRow id="results-row">
 
-            <ResultsColumn id="results-column">
-              <Subheading>Tip Amount</Subheading>
-              <Detail id='detail'>/ person</Detail>
-            </ResultsColumn>
+              <ResultsColumn id="results-column">
+                <Subheading>Tip Amount</Subheading>
+                <Detail id='detail'>/ person</Detail>
+              </ResultsColumn>
 
-            <ResultsColumn id="results-column">
-              <Sum>${tipAmount.toFixed(2)}</Sum>
-            </ResultsColumn>
+              <ResultsColumn id="results-column">
+                <Sum>${tipAmount.toFixed(2)}</Sum>
+              </ResultsColumn>
 
-          </ResultsRow>
+            </ResultsRow>
 
-          <ResultsRow id="results-row-2">
+            <ResultsRow id="results-row-2">
 
-            <ResultsColumn id="results-column">
-              <Subheading>Total</Subheading>
-              <Detail id='detail'>/ person</Detail>
-            </ResultsColumn>
+              <ResultsColumn id="results-column">
+                <Subheading>Total</Subheading>
+                <Detail id='detail'>/ person</Detail>
+              </ResultsColumn>
 
-            <ResultsColumn id="results-column">
-              <Sum>${billPerPerson.toFixed(2)}</Sum>
-            </ResultsColumn>
+              <ResultsColumn id="results-column">
+                <Sum>${billPerPerson.toFixed(2)}</Sum>
+              </ResultsColumn>
 
-          </ResultsRow>
+            </ResultsRow>
 
-          <ResultsRow id="results-row-3">
+            <ResultsRow id="results-row-3">
 
-            <ResultsColumn id="results-column">
-              <ButtonResults onClick={() => resetData()}>RESET</ButtonResults>
-            </ResultsColumn>
+              <ResultsColumn id="results-column">
+                <ButtonResults onClick={() => resetData()}>RESET</ButtonResults>
+              </ResultsColumn>
 
-          </ResultsRow>
+            </ResultsRow>
 
-        </BillResults>      
+          </BillResults>
+        </DesktopColumn>   
       </Card>
     </Container>
   );
