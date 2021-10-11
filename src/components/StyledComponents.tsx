@@ -407,6 +407,7 @@ export const Card = styled.div`
       height: ${desktopCardHeight};
       border-radius: 24px;
       flex-direction: row;
+      align-items: flex-start;
 
       ${DesktopColumn} {
         flex-grow: 1;
@@ -449,9 +450,16 @@ export const Card = styled.div`
       ${BillResults} {
         width: ${desktopBillResultsWidth};
         height: ${desktopBillResultsHeight};
+        /* reset */
+        padding: 0px;
       }
 
       /* PIXEL PERFECT DESKTOP */
+
+      // RESET
+      #desktop-column, #desktop-column-2, #bill-value-column, #people-column, #bill-results, #results-column, #results-row, #results-row-2, #results-row-3 {
+        padding: 0px;
+      }
 
       #logo {
        /* the positioning is inside the logo styled-component. reason: some bug happened. */ 
@@ -462,7 +470,7 @@ export const Card = styled.div`
       }
 
       #desktop-column-2 {
-        padding-left: 1px;
+        padding-right: 31px;
       }
 
       #bill-value-column {
@@ -479,6 +487,9 @@ export const Card = styled.div`
 
       #people-column {
         padding-left: 48px;
+      }
+
+      #bill-results {
       }
 
       
