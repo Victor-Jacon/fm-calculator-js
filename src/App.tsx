@@ -1,35 +1,22 @@
+import { parse } from 'querystring';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components'
 import DollarIcon from './components/DollarIcon';
 import PersonIcon from './components/PersonIcon';
-import { Container } from './components/StyledComponents';
+import { Container,TipSubgroup, StyledTipOption, StyledTipText, CustomTipOption, Sum, ResultsRow, ResultsColumn, ButtonResults, Logo, Card, BillValueColumn, Title, FormContainer, BillInput, TitleTip, PeopleColumn, PeopleRow, BillResults, Detail, Subheading, PeopleWarning } from './components/StyledComponents';
 import { colors, formInputSize, fontFamily } from './components/StyledComponents'
-import Tips from './components/Tips';
 
 const App = () => {
-  // handleBil
+  // handleBil + people + tip + customTip
   const [bill, setBill] = useState<string>('0');
-
-  // handleTotalBill - 2
-  const [billPerPerson, setBillPerPerson] = useState<number>(0);
-
-  // handlePeople
   const [people, setPeople] = useState<number>(1);
+  const [tipPercentage, setTipPercentage] = useState<any>('');
+  const [customTip, setCustomTip] = useState<number | string>()
 
-  // handleTotalBill - 1
+  // handleTotalBill
+  const [billPerPerson, setBillPerPerson] = useState<number>(0);
   const [tipAmount, setTipAmount] = useState<number>(0);
-
-  // [Get again from localStorage when user clicks inside the tips component]
-  const [tipsClicked, setTipsClicked] = useState<number>(0)
-
-  // [Get from localStorage the tip from tips component]
-  const [tipPercentageLS, setTipPercentageLS] = useState('')
-  
-  useEffect(() => {
-    let tipPercentageLS = localStorage.getItem('tipLS')
-    setTipPercentageLS(tipPercentageLS ? tipPercentageLS : '10')
-  }, [billPerPerson, bill, people, tipAmount, tipsClicked])
 
   const handleBill = (e: any) => {
     // converts comma to point
@@ -40,8 +27,42 @@ const App = () => {
     // handleTotalBillAndTip(bill, tipPercentageLS, people)
   }
 
+  function handleTip(e: any) {
+    // check if event value is being passed
+    // console.log(e.target.value)
+    setTipPercentage(e.target.value);
+
+    // If user clicks in other option, the custom tip is reset
+    setCustomTip('');
+  }
+
+  function handleTipLabel(e: any) {
+    // check if dataset tip value is being passed
+    // console.log(e.target.dataset.tip)
+    setTipPercentage(e.target.dataset.tip);
+
+    // If user clicks in other option, the custom tip is reset
+    setCustomTip('');
+  }
+
+  const [label, setLabel] = useState<boolean>(false); // [helper] handleTip + label text color
+
+  const handleTipPercentage = (tipValue: string) => {
+    if (tipPercentage === tipValue) {
+      return true
+    }
+  }
+
+  const handleCustom = (e:any) => {
+    // console.log(e.target.value)
+    setCustomTip(e.target.value)
+    setTipPercentage(e.target.value)
+  }
+  
+  const clearTipPercentage = () => setTipPercentage('') // [helper] reset tip
+
   function handlePeople(e: any) {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     setPeople(e.target.value)
   }
 
@@ -74,14 +95,16 @@ const App = () => {
     }
   }
 
+  useEffect(() => {
+    handleTotalBillAndTip(bill, tipPercentage, people)
+  }, [bill, people, tipPercentage, customTip])
+
   const resetData = () => {
     setBill('0')
     setBillPerPerson(0)
     setPeople(1)
     setTipAmount(0)
-    setTipsClicked(0)
-    setTipPercentageLS('')
-    localStorage.removeItem('tipLS')
+    setCustomTip('')
   }
 
   return (
@@ -96,19 +119,49 @@ const App = () => {
         <BillValueColumn id="bill-value-column">
           <Title>Bill</Title>
           <FormContainer id="form-container">
-            <BillInput value={bill} onChange={(e) => handleBill(e)} type="text" />
+            <BillInput value={bill} onChange={(e) => handleBill(e)} placeholder="0" type="text" />
             <DollarIcon />
           </FormContainer>
         </BillValueColumn>
         
-        <div onClick={() => setTipsClicked(tipsClicked+1)}>
-          <Tips />
-        </div>
+        <>
+          <TitleTip>Select Tip %</TitleTip>
+          <div className='tip-container' id='tip-container'>
+            <TipSubgroup className='tip-subgroup'>
+                <StyledTipOption value={5} checked={handleTipPercentage('5')} onChange={(e) => handleTip(e)} type="radio"/>
+                <StyledTipText active={handleTipPercentage('5')} data-tip={5} onClick={(e) => handleTipLabel(e)} className="first-tip-text">5%</StyledTipText>
+            </TipSubgroup>
+            <TipSubgroup className='tip-subgroup'>
+                <StyledTipOption value={10} checked={handleTipPercentage('10')} onChange={(e) => handleTip(e)} type="radio"/>
+                <StyledTipText active={handleTipPercentage('10')} data-tip={10} onClick={(e) => handleTipLabel(e)}>10%</StyledTipText>
+            </TipSubgroup>
+            <TipSubgroup className='tip-subgroup'>
+                <StyledTipOption value={15} checked={handleTipPercentage('15')} onChange={(e) => handleTip(e)} type="radio"/>
+                <StyledTipText active={handleTipPercentage('15')} data-tip={15} onClick={(e) => handleTipLabel(e)}>15%</StyledTipText>
+            </TipSubgroup>
+            <TipSubgroup className='tip-subgroup'>
+                <StyledTipOption value={25} checked={handleTipPercentage('25')} onChange={(e) => handleTip(e)} type="radio"/>
+                <StyledTipText active={handleTipPercentage('25')} data-tip={25} onClick={(e) => handleTipLabel(e)}>25%</StyledTipText>
+            </TipSubgroup>
+            <TipSubgroup className='tip-subgroup'>
+                <StyledTipOption value={50} checked={handleTipPercentage('50')} onChange={(e) => handleTip(e)} type="radio"/>
+                <StyledTipText active={handleTipPercentage('50')} data-tip={50} onClick={(e) => handleTipLabel(e)}>50%</StyledTipText>
+            </TipSubgroup>
+            <div className='custom-tip'>
+                <CustomTipOption value={customTip} onChange={(e) => handleCustom(e)} onClick={() => clearTipPercentage()} placeholder="Custom" type="number" />
+            </div>
+          </div>
+        </>
 
         <PeopleColumn id='people-column'>
-          <Title id='number-of-people'>Number of People</Title>
+          <PeopleRow>
+            <Title id='number-of-people'>Number of People</Title>
+            {Number(people) === 0 && (
+              <PeopleWarning>Can't be zero</PeopleWarning>
+            )}
+          </PeopleRow>
           <FormContainer id='form-container-2'>
-            <BillInput value={people} onChange={(e) => handlePeople(e)} type="text" />
+            <BillInput warning={Number(people) === 0} value={people} onChange={(e) => handlePeople(e)} placeholder="0" type="text" />
             <PersonIcon />
           </FormContainer>
         </PeopleColumn>
@@ -149,221 +202,10 @@ const App = () => {
 
           </ResultsRow>
 
-        </BillResults>
-
-        <button 
-          onClick={() => console.log(handleTotalBillAndTip(bill, tipPercentageLS, people))}>
-            Calcular
-        </button>
-        
+        </BillResults>      
       </Card>
     </Container>
   );
 }
-
-const sectionWidth = '310px'
-const cardMaxWidth = '377px'
-
-export const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 84vh;
-  max-width: ${cardMaxWidth};
-  flex-shrink: 1;
-
-  background-color: white;
-  border-radius: 24px 24px 0px 0px;
-
-  #bill-value-column {
-    padding-top: 31px;
-    padding-bottom: 1px;
-  }
-
-  #form-container {
-    padding-top: 8px;
-    padding-bottom: 26px;
-  }
-
-  #tip-container {
-    padding-bottom: 32px;
-  }
-
-  #number-of-people {
-    padding-bottom: 4px;
-  }
-
-  #people-column {
-    padding-bottom: 30px;
-  }
-
-    #bill-results {
-      padding-left: 25px;
-    }
-
-    #results-column {
-      padding-right: 23px;
-    }
-
-    #results-row {
-      padding-right: 3px;
-      padding-top: 38px;
-    }
-
-    #results-row-2 {
-      padding-right: 3px;
-      padding-top: 20px;
-    }
-
-    #results-row-3 {
-      padding-top: 32px;
-    }
-
-    #detail {
-      line-height: 22px;
-    }
-
-`
-
-export const Logo = styled.div`
-  display: flex;
-  background-color: ${colors.lightGrayishCyan};
-
-  padding-top: 52px;
-  padding-bottom: 24px;
-`
-
-export const BillInput = styled.input`
-  background-color: ${colors.lightGrayishCyan2};
-  color: ${colors.veryDarkCyan};
-  font-weight: bold;
-  text-align: right;
-  font-size: ${formInputSize};
-  line-height: 48px;
-  border-radius: 8px;
-  border: 2px solid white;
-
-  width: ${sectionWidth};
-  padding-right: 16px;
-
-  &::placeholder {
-    color: ${colors.darkGrayishCyan};
-    text-align: center;
-  }
-  &:focus {
-    border: 2px solid;
-    border-color: ${colors.strongCyan};
-  }
-
-  /* RESET */
-  outline: none;
-  box-sizing: border-box;
-  &::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  }
-  &::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  }
-`
-
-export const Title = styled.h1`
-  font-size: 16px;
-  color: ${colors.darkGrayishCyan};
-`
-
-export const TitleTip = styled(Title)`
-  align-self: flex-start;
-  padding-left: 34px;
-`
-
-export const Subheading = styled.h2`
-  font-size: 16px;
-`
-
-export const FormContainer = styled.div`
-  display: flex;
-  flex-shrink: 1;
-
-  position: relative;
-`
-
-export const IconInput = styled.p`
-  position: absolute;
-  height: 0px;
-  width: 0px;
-  top: 22px;
-
-  font-size: 24px;
-`
-
-export const BillResults = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  flex-shrink: 1;
-
-  width: 328px;
-  height: 258px;
-
-  border-radius: 16px;
-  background-color: ${colors.veryDarkCyan};
-  color: ${colors.white};
-
-  box-sizing: border-box;
-`
-
-export const ResultsRow = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: ${sectionWidth};
-
-`
-
-export const ResultsColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: ${sectionWidth};
-
-`
-
-export const Detail = styled.p`
-  color: ${colors.darkGrayishCyan};
-  font-weight: bold;
-  font-size: 13px;
-`
-
-export const Sum = styled.p`
-  color: ${colors.strongCyan};
-  font-size: 32px;
-  font-weight: bold;
-  text-align: right;
-`
-
-export const BillValueColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 310px;
-`
-
-export const PeopleColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-export const ButtonResults = styled.button`
-  background-color: ${colors.strongCyan};
-  color: ${colors.veryDarkCyan};
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 20px;
-  font-family: ${fontFamily};
-
-  width: 281px;
-  height: 48px;
-`
 
 export default App;
